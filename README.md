@@ -25,6 +25,22 @@ remove the toolchain if desired.
 There is a test C application in the `test_app` folder, giving an example of
 how to build and use this created toolchain.
 
+```
+pleb@gamey:~/riscv/test_app$ make
+clang-10 -Wall -Werror -O2 -g -nostdlib -target riscv64 -march=rv64i -I/home/pleb/riscv/musl_build/install/include -c test_app.c
+ld.lld-10 -o test_app \
+        /home/pleb/riscv/musl_build/install/lib/crt1.o \
+        /home/pleb/riscv/musl_build/install/lib/libc.a \
+        /home/pleb/riscv/compiler-rt_build/install/lib/riscv64/libclang_rt.builtins-riscv64.a \
+        *.o
+pleb@gamey:~/riscv/test_app$ file ./test_app
+./test_app: ELF 64-bit LSB executable, UCB RISC-V, version 1 (SYSV), statically linked, with debug_info, not stripped
+pleb@gamey:~/riscv/test_app$ qemu-riscv64 ./test_app
+Hello world!
+```
+
+How cool is that!?
+
 # Environment
 
 All of this testing has been done using the official Debian pacakges directly
