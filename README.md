@@ -74,5 +74,5 @@ MUSL was slightly modified to have a atomic-less support, abliet unsafely and wi
 
 Basis: https://github.com/llvm-mirror/compiler-rt @ `69445f095c22aac2388f939bedebf224a6efcdaf`
 
-`compiler-rt` had a bug with `rv64i` where it would produce multiples recursively in the C implementation of `__muldi3`. To avoid this, a new `muldi3.S` file has been created under the `lib/builtins/riscv64` folder. It has then been added to the `CMakeLists.txt` to ensure it gets used and replaces the `__muldi3` C implementation.
+`compiler-rt` had a bug with `rv64i` where it would produce multiplies recursively in the C implementation of `__muldi3`. To avoid this, a new `muldi3.S` file has been created under the `lib/builtins/riscv64` folder. It has then been added to the `CMakeLists.txt` to ensure it gets used and replaces the `__muldi3` C implementation.
 
