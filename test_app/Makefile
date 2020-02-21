@@ -1,7 +1,7 @@
 CLANG_VERSION = 10
 
-MUSL_INSTALL_PATH = /home/pleb/riscv/musl_build/install
-COMPILER_RT_PATH  = /home/pleb/riscv/compiler-rt_build/install/lib/riscv64/libclang_rt.builtins-riscv64.a
+MUSL_INSTALL_PATH = ../musl_build/install
+COMPILER_RT_PATH  = ../compiler-rt_build/install/lib/riscv64/libclang_rt.builtins-riscv64.a
 
 CFLAGS  = -Wall -Werror -O2 -g -nostdlib -target riscv64 -march=rv64i
 CFLAGS += -I$(MUSL_INSTALL_PATH)/include
