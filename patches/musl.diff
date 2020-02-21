@@ -1,0 +1,33 @@
+diff --git a/./arch/riscv64/atomic_arch.h b/home/pleb/riscv/musl-1.2.0/arch/riscv64/atomic_arch.h
+index 0c38258..d8b32c3 100644
+--- a/./arch/riscv64/atomic_arch.h
++++ b/home/pleb/riscv/musl-1.2.0/arch/riscv64/atomic_arch.h
+@@ -4,6 +4,7 @@ static inline void a_barrier()
+ 	__asm__ __volatile__ ("fence rw,rw" : : : "memory");
+ }
+ 
++#if 0
+ #define a_cas a_cas
+ static inline int a_cas(volatile int *p, int t, int s)
+ {
+@@ -36,3 +37,20 @@ static inline void *a_cas_p(volatile void *p, void *t, void *s)
+ 		: "memory");
+ 	return old;
+ }
++#else
++#define a_cas a_cas
++static inline int a_cas(volatile int *p, int t, int s)
++{
++	int old = *p;
++	*p = s;
++	return old;
++}
++
++#define a_cas_p a_cas_p
++static inline void *a_cas_p(volatile void *p, void *t, void *s)
++{
++	void *old = *(void**)p;
++	*(void**)p = s;
++	return old;
++}
++#endif
